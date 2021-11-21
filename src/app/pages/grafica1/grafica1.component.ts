@@ -32,4 +32,12 @@ export class Grafica1Component {
   ];
   public data3 = [[55, 35, 4, 3, 3]
   ];
+  public labels4: string[] = [
+    "Aumento en biceps (cm)",
+    "Aumento en triceps (cm)",
+    'Disminucion de porcentaje de grasa (%)',
+        
+  ];
+  public data4 = [[2, 3, 4  ]
+  ];
 }
