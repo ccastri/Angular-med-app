@@ -11,6 +11,8 @@ menu: any[] = [
     submenu: [
       {title: 'Main', url:'/'},
       {title: 'ProgressBar', url:'progress'},
+      {title: 'Promises', url:'promises'},
+      {title: 'Rxjs', url:'rxjs'},
       {title: 'Statistics', url:'chart1'}
     ]
 
