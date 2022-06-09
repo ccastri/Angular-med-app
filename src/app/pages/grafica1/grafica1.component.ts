@@ -11,33 +11,26 @@ export class Grafica1Component {
     'Mild cognitive impairment',
     'Cognitive normal',
   ];
-  public data1 = [[35, 45, 100]
-  ];
+  public data1 = [[35, 45, 100]];
   public labels2: string[] = [
-    "True positives",
-    'True Negatives',
-    "False positives",
-    'False Negatives',
-    
+    'Costos en medicina',
+    'Costos en transporte',
+    'Costos en atención médica',
+    'Costos en horas laborales',
   ];
-  public data2 = [[85, 5, 10, 8]
-  ];
+  public data2 = [[85, 5, 10, 8]];
   public labels3: string[] = [
-    "Right hippocampus",
-    "Left hippocampus",
+    'Right hippocampus',
+    'Left hippocampus',
     'Right/left Putamen',
-    "Amygdala",
+    'Amygdala',
     'Palladium',
-    
   ];
-  public data3 = [[55, 35, 4, 3, 3]
-  ];
+  public data3 = [[55, 35, 4, 3, 3]];
   public labels4: string[] = [
-    "Aumento en biceps (cm)",
-    "Aumento en triceps (cm)",
-    'Disminucion de porcentaje de grasa (%)',
-        
+    'Dinero ahorrado',
+    'Reducción de tiempo invertido',
+    'Mejora de condición con el tratamiento',
   ];
-  public data4 = [[2, 3, 4  ]
-  ];
+  public data4 = [[2, 3, 4]];
 }

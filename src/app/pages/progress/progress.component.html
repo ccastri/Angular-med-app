@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Striped Progress bar</h4>
+        <h4 class="card-title">Avance tratamiento neurologia</h4>
         <div class="progress m-t-20">
           <div
             class="progress-bar bg-primary progress-bar-striped active"
@@ -13,7 +13,7 @@
             <span class="sr-only">85% Complete (success)</span>
           </div>
         </div>
-
+        <h4 class="card-title">Avance tratamiento psicologia</h4>
         <div class="progress m-t-20">
           <div
             class="progress-bar bg-info progress-bar-striped active"
@@ -32,9 +32,7 @@
   <div class="col-6">
     <div class="card">
       <div class="card-body">
-        <app-increaser  
-            (valor)="progreso1 = $event"
-            [valor]='progreso1'>
+        <app-increaser (valor)="progreso1 = $event" [valor]="progreso1">
         </app-increaser>
       </div>
     </div>
@@ -44,8 +42,9 @@
       <div class="card-body">
         <app-increaser
           (valor)="progreso2 = $event"
-          [valor]='progreso2'
-          [btnClass]="'btn btn-info'">
+          [valor]="progreso2"
+          [btnClass]="'btn btn-info'"
+        >
         </app-increaser>
       </div>
     </div>
