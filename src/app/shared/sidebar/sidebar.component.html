@@ -11,13 +11,16 @@
             class="has-arrow waves-effect waves-dark"
             href="#"
             aria-expanded="false"
-            ><img src="./assets/images/users/profile.png" alt="user" /><span
-              class="hide-menu"
-              >Camilo Castrillon
+            ><img [src]="user.imageUrl" alt="user" /><span class="hide-menu"
+              >{{ user.name }}
             </span></a
           >
           <ul aria-expanded="false" class="collapse">
-            <li><a href="javascript:void()">My Profile </a></li>
+            <li>
+              <a routerLinkActive="active" routerLink="./profile"
+                >My Profile
+              </a>
+            </li>
             <li><a href="javascript:void()">My Balance</a></li>
             <li><a href="javascript:void()">Inbox</a></li>
             <li><a routerLink="account-settings">Account Setting</a></li>
@@ -41,11 +44,13 @@
           >
           <ul aria-expanded="false" class="collapse">
             <li *ngFor="let subMenuItem of item.submenu">
-                <a [routerLink]="subMenuItem.url"
+              <a
+                [routerLink]="subMenuItem.url"
                 routerLinkActive="active"
-                [routerLinkActiveOptions]="{exact: true}">{{subMenuItem.title}} </a>
-              </li>
-
+                [routerLinkActiveOptions]="{ exact: true }"
+                >{{ subMenuItem.title }}
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
