@@ -3,7 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
+
 //Created modules
+
+import { PipesModule } from '../pipes/pipes.module';
+
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
@@ -13,6 +17,10 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './mainteneance/users/users.component';
+import { HospitalsComponent } from './mainteneance/hospitals/hospitals.component';
+import { DoctorsComponent } from './mainteneance/doctors/doctors.component';
+import { DoctorComponent } from './mainteneance/doctors/doctor.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +32,10 @@ import { ProfileComponent } from './profile/profile.component';
     PromisesComponent,
     RxjsComponent,
     ProfileComponent,
+    UsersComponent,
+    HospitalsComponent,
+    DoctorsComponent,
+    DoctorComponent,
   ],
 
   exports: [
@@ -41,6 +53,7 @@ import { ProfileComponent } from './profile/profile.component';
     FormsModule,
     ComponentsModule,
     ReactiveFormsModule,
+    PipesModule,
   ],
 })
 export class PagesModule {}

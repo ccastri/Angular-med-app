@@ -53,7 +53,7 @@ export class ProfileComponent implements OnInit {
       return (this.imgTemp = null);
     }
     const reader = new FileReader();
-    const url64 = reader.readAsDataURL(file);
+    reader.readAsDataURL(file);
 
     reader.onloadend = () => (this.imgTemp = reader.result);
   }
@@ -64,6 +64,10 @@ export class ProfileComponent implements OnInit {
       .then((img) => {
         this.user.img = img;
         Swal.fire('guardado', 'changes has been saved', 'success');
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire('Error', 'Image could not be uploaded', 'error');
       });
   }
 }

@@ -11,6 +11,10 @@ import { ProgressComponent } from './progress/progress.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './mainteneance/users/users.component';
+import { HospitalsComponent } from './mainteneance/hospitals/hospitals.component';
+import { DoctorsComponent } from './mainteneance/doctors/doctors.component';
+import { DoctorComponent } from './mainteneance/doctors/doctor.component';
 
 const routes: Routes = [
   {
@@ -46,6 +50,27 @@ const routes: Routes = [
         data: { title: 'My profile' },
       },
       //Paths vacios redirect to dashboard
+      // Mainteneance
+      {
+        path: 'users',
+        component: UsersComponent,
+        data: { title: 'Users' },
+      },
+      {
+        path: 'hospitals',
+        component: HospitalsComponent,
+        data: { title: 'Hospitals' },
+      },
+      {
+        path: 'doctors',
+        component: DoctorsComponent,
+        data: { title: 'Doctors' },
+      },
+      {
+        path: 'doctor/:id',
+        component: DoctorComponent,
+        data: { title: 'Doctor' },
+      },
     ],
   },
 ];
