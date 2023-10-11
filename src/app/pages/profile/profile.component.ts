@@ -27,23 +27,28 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.profileForm = this.fb.group({
       name: [this.user.name, Validators.required],
+      role: [this.user.role, Validators.required],
       email: [this.user.email, [Validators.required, Validators.email]],
     });
   }
   updateProfile() {
     console.log(this.profileForm.value);
-    this.userService.updateProfile(this.profileForm.value).subscribe(
-      () => {
+    this.userService.updateProfile(this.profileForm.value).subscribe({
+      // next?: (value: Object) => void, error?: (error: any) => void, complete?: () => void):
+      next: () => {
         // console.log(resp);
-        const { name, email } = this.profileForm.value;
+        const { name, email, role } = this.profileForm.value;
+        console.log(name);
         this.user.name = name;
+        this.user.role = role;
         this.user.email = email;
-        Swal.fire('guardado', 'changes has been saved', 'success');
+        Swal.fire('guardado', `${name} has been saved`, 'success');
       },
-      (err) => {
+      error: (err) => {
+        console.log(err);
         Swal.fire('Error', err.error.msg, 'error');
-      }
-    );
+      },
+    });
   }
 
   changeImage(file: File) {

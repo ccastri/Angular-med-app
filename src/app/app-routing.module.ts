@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesRoutingModule } from './pages/pages.routing';
 import { AuthRoutingModule } from './auth/auth.routing';
 
-
 import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
@@ -12,7 +11,9 @@ const routes: Routes = [
   // path:'/auth' authRouting
   // path:'/dashboard' pagesRouting
   // path:'/dashboard' pagesRouting
+  // !Rutas vacias redirigen al /dashboard
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  //! Rutas no encontradas redirigen a component not found
   { path: '**', component: NotfoundComponent }, //Errores de direccion URL not page found
 ];
 

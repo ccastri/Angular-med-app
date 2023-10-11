@@ -1,0 +1,103 @@
+<div class="row animated fadeIn fast">
+  <div class="col-4">
+    <div class="card">
+      <div class="cad-body">
+        <h3>Users</h3>
+        <div class="alert alert-info" *ngIf="users.length === 0">
+          <h4>search pattern has no match in the database</h4>
+        </div>
+        <div class="table-responsive" *ngIf="users.length > 0">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Avatar</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>
+                  <img [src]="user.img | image: 'users'" class="w-75" alt="" />
+                </td>
+                <td>{{ user.name }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <div class="cad-body">
+        <h3>Doctors</h3>
+        <div class="alert alert-info" *ngIf="doctors.length === 0">
+          <h4>search pattern has no match in the database</h4>
+        </div>
+        <div class="table-responsive" *ngIf="doctors.length > 0">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Avatar</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let doctor of doctors" class="animated fadeIn fast">
+                <td>
+                  <img
+                    [src]="doctor.img | image: 'doctors'"
+                    class="w-75"
+                    alt=""
+                  />
+                </td>
+                <td>
+                  <a [routerLink]="['/dashboard/doctor', doctor._id]">
+                    {{ doctor.name }}
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <div class="cad-body">
+        <h3>Hospitals</h3>
+        <div class="alert alert-info" *ngIf="hospitals.length === 0">
+          <h4>search pattern has no match in the database</h4>
+        </div>
+        <div class="table-responsive" *ngIf="hospitals.length > 0">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Avatar</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let hospital of hospitals"
+                class="animated fadeIn fast"
+              >
+                <td>
+                  <img
+                    [src]="hospital.img | image: 'hospitals'"
+                    class="w-75"
+                    alt=""
+                  />
+                </td>
+                <td>{{ hospital.name }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

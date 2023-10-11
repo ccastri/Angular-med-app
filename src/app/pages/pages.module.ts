@@ -21,6 +21,7 @@ import { UsersComponent } from './mainteneance/users/users.component';
 import { HospitalsComponent } from './mainteneance/hospitals/hospitals.component';
 import { DoctorsComponent } from './mainteneance/doctors/doctors.component';
 import { DoctorComponent } from './mainteneance/doctors/doctor.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { DoctorComponent } from './mainteneance/doctors/doctor.component';
     HospitalsComponent,
     DoctorsComponent,
     DoctorComponent,
+    SearchComponent,
   ],
 
   exports: [

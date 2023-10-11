@@ -32,10 +32,13 @@
   width: 50px;
   height: 50px;
 }
-.img{
+/* .img{
 height: 30px;
 width: 60px;
-  /* margin: 5px; */
+  margin: 5px;
+} */
+.w-75{
+  width:15px;
 }
 .w-200{
   width: 200px;

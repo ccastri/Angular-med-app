@@ -49,7 +49,7 @@ export class HospitalService {
 
   loadHospitals(): Observable<Hospital[]> {
     // base_url = localhost:3000/api/users?since=0
-    const url = `${base_url}/hospitals`; //?since=${since}`;
+    const url = `${base_url}/hospitals`; // ?since=${since}`;
     return this.http
       .get<{ ok: boolean; hospitals: Hospital[] }>(url, this.headers)
       .pipe(

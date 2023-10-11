@@ -63,6 +63,10 @@ export class SearchsService {
         )
     );
   }
+  globalSearch(pattern: string) {
+    const url = `${base_url}/all/${pattern}`;
+    return this.http.get(url, this.headers);
+  }
 
   search(type: 'users' | 'doctors' | 'hospitals', pattern: string) {
     const url = `${base_url}/all/collection/${type}/${pattern}`;
@@ -75,7 +79,7 @@ export class SearchsService {
           case 'hospitals':
             return this.hospitalsSwitch(res.results);
           case 'doctors':
-            return this.usersSwitch(res.results);
+            return this.doctorsSwitch(res.results);
 
           default:
             return [];

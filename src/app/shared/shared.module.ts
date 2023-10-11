@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -6,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-
+import { FormsModule } from '@angular/forms';
 
 const SHARED_COMPONENT = [
   BreadcrumbsComponent,
@@ -15,17 +14,10 @@ const SHARED_COMPONENT = [
 ];
 
 @NgModule({
-  declarations: [SHARED_COMPONENT
-    
-  ],
+  declarations: [SHARED_COMPONENT],
 
-  exports:[SHARED_COMPONENT
+  exports: [SHARED_COMPONENT],
 
-  ],
-
-  imports: [
-    CommonModule,
-    RouterModule
-  ]
+  imports: [CommonModule, RouterModule, FormsModule],
 })
-export class SharedModule { }
+export class SharedModule {}
