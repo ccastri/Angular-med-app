@@ -10,6 +10,7 @@ declare const gapi: any;
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
+// STATE FOR CONFIRMING FORM SUBMISSION AND OAUTH2 login too.
 export class LoginComponent implements OnInit {
   public formSubmitted = false;
   public auth2: any;
