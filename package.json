@@ -12,15 +12,15 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~13.0.0",
-    "@angular/common": "~13.0.0",
-    "@angular/compiler": "~13.0.0",
-    "@angular/core": "~13.0.0",
+    "@angular/animations": "^14.3.0",
+    "@angular/common": "^14.3.0",
+    "@angular/compiler": "^14.3.0",
+    "@angular/core": "^14.3.0",
     "@angular/fire": "^7.5.0",
-    "@angular/forms": "~13.0.0",
-    "@angular/platform-browser": "~13.0.0",
-    "@angular/platform-browser-dynamic": "~13.0.0",
-    "@angular/router": "~13.0.0",
+    "@angular/forms": "^14.3.0",
+    "@angular/platform-browser": "^14.3.0",
+    "@angular/platform-browser-dynamic": "^14.3.0",
+    "@angular/router": "^14.3.0",
     "chart.js": "^2.9.4",
     "firebase": "^9.22.0",
     "ng2-charts": "^2.4.2",
@@ -30,9 +30,9 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.0.1",
-    "@angular/cli": "~13.0.1",
-    "@angular/compiler-cli": "~13.0.0",
+    "@angular-devkit/build-angular": "^14.2.13",
+    "@angular/cli": "^14.2.13",
+    "@angular/compiler-cli": "^14.3.0",
     "@compodoc/compodoc": "^1.1.21",
     "@storybook/addon-docs": "^7.4.6",
     "@storybook/addon-essentials": "^7.4.6",
@@ -53,6 +53,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.4.6",
-    "typescript": "~4.4.3"
+    "typescript": "~4.8.4"
   }
 }

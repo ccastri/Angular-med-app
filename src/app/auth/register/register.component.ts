@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from './../../services/user.service';
@@ -27,7 +27,7 @@ export class RegisterComponent {
   );
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private userService: UserService,
     private router: Router
   ) {}
@@ -74,7 +74,7 @@ export class RegisterComponent {
     return !this.registerForm.get('terms').value && this.formSubmitted; //si el check de terms esta en false y ya se presiono submit...
   }
   matchingPasswords(pass1Name: string, pass2Name: string) {
-    return (formGroup: FormGroup) => {
+    return (formGroup: UntypedFormGroup) => {
       const pass1Control: any = formGroup.get(pass1Name);
       const pass2Control: any = formGroup.get(pass2Name);
 

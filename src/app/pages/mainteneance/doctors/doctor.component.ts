@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { delay } from 'rxjs';
 import { Doctor } from 'src/app/models/doctor.model';
@@ -19,12 +19,12 @@ export class DoctorComponent implements OnInit {
 
   public selectedHospital: Hospital;
   public selectedDoctor: Doctor;
-  public doctorForm: FormGroup;
+  public doctorForm: UntypedFormGroup;
 
   constructor(
     private hospitalService: HospitalService,
     private doctorService: DoctorService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {}

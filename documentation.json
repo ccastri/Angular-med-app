@@ -3012,7 +3012,7 @@
         },
         {
             "name": "DoctorComponent",
-            "id": "component-DoctorComponent-6a41d4e41a2334e72417ee0acbc3a4ca2feded58d3ce4473a1ed8f0e505bef0210ac5966cafcbd93d4495cb32692402b4f5591c0f854f803e0c3a5a128d7acdb",
+            "id": "component-DoctorComponent-5517398d469681cbe65973b5a158394a35182912925405a280a7f65cfeba7a044c2334c0f394ac075c1773e54dc31d655c501c620b16c0fe75f1313247551468",
             "file": "src/app/pages/mainteneance/doctors/doctor.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3034,7 +3034,7 @@
                     "name": "doctorForm",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "FormGroup",
+                    "type": "UntypedFormGroup",
                     "optional": false,
                     "description": "",
                     "line": 22,
@@ -3162,7 +3162,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\nimport { ActivatedRoute, Router } from '@angular/router';\r\nimport { delay } from 'rxjs';\r\nimport { Doctor } from 'src/app/models/doctor.model';\r\nimport { Hospital } from 'src/app/models/hospital.model';\r\nimport { DoctorService } from 'src/app/services/doctor.service';\r\nimport { HospitalService } from 'src/app/services/hospital.service';\r\nimport Swal from 'sweetalert2';\r\n\r\n@Component({\r\n  selector: 'app-medico',\r\n  templateUrl: './doctor.component.html',\r\n  styles: [],\r\n})\r\nexport class DoctorComponent implements OnInit {\r\n  public loading: boolean = true;\r\n  public hospitals: Hospital[] = [];\r\n\r\n  public selectedHospital: Hospital;\r\n  public selectedDoctor: Doctor;\r\n  public doctorForm: FormGroup;\r\n\r\n  constructor(\r\n    private hospitalService: HospitalService,\r\n    private doctorService: DoctorService,\r\n    private fb: FormBuilder,\r\n    private router: Router,\r\n    private activatedRoute: ActivatedRoute\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n    // this.doctorService.getDoctorById\r\n    this.activatedRoute.params.subscribe(({ id }) => this.loadDoctor(id));\r\n\r\n    this.doctorForm = this.fb.group({\r\n      name: ['', Validators.required],\r\n      hospital: ['', Validators.required],\r\n    });\r\n    this.loadHospitals();\r\n\r\n    this.doctorForm\r\n      .get('hospital')\r\n      .valueChanges.pipe(delay(100))\r\n      .subscribe((hospitalId) => {\r\n        this.selectedHospital = this.hospitals.find(\r\n          (h) => h._id === hospitalId\r\n        );\r\n        console.log(this.selectedHospital);\r\n      });\r\n  }\r\n  saveDoctor() {\r\n    const { name } = this.doctorForm.value;\r\n    // if (!this.selectedDoctor) {\r\n    //   return;\r\n    // }\r\n    this.doctorService\r\n      .createDoctor(this.doctorForm.value)\r\n      .subscribe((res: any) => {\r\n        if (this.selectedDoctor) {\r\n          //Update\r\n          const data = {\r\n            ...this.doctorForm.value,\r\n            _id: this.selectedDoctor._id,\r\n          };\r\n          this.doctorService.updateDoctor(data).subscribe((res) => {\r\n            Swal.fire(\r\n              'Updated',\r\n              `${name} has been modified successfully`,\r\n              'success'\r\n            );\r\n            // this.router.navigateByUrl(`/dashboard/doctor/${res.doctor._id}`);\r\n          });\r\n        } else {\r\n          //Create\r\n          this.doctorService\r\n            .createDoctor(this.doctorForm.value)\r\n            .subscribe((re: Doctor) => {\r\n              Swal.fire(\r\n                'Created',\r\n                `${name} was created successfully`,\r\n                'success'\r\n              );\r\n              this.router.navigateByUrl(`/dashboard/doctor/${res.doctor._id}`);\r\n            });\r\n        }\r\n      });\r\n  }\r\n\r\n  loadHospitals() {\r\n    // this.loading = true;\r\n\r\n    this.hospitalService.loadHospitals().subscribe((hospitals: Hospital[]) => {\r\n      console.log(hospitals);\r\n      // this.loading = false;\r\n      this.hospitals = hospitals;\r\n    });\r\n  }\r\n  loadDoctor(id: string) {\r\n    if (id === 'new') {\r\n    }\r\n    this.doctorService.getDoctorById(id).subscribe((doctor) => {\r\n      if (!doctor) {\r\n        return this.router.navigateByUrl(`/dashboard/doctors`);\r\n      } else {\r\n        this.selectedDoctor = doctor;\r\n        const {\r\n          name,\r\n          hospital: { _id },\r\n        } = doctor;\r\n        this.doctorForm.setValue({ name, hospital: _id });\r\n      }\r\n    });\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';\r\nimport { ActivatedRoute, Router } from '@angular/router';\r\nimport { delay } from 'rxjs';\r\nimport { Doctor } from 'src/app/models/doctor.model';\r\nimport { Hospital } from 'src/app/models/hospital.model';\r\nimport { DoctorService } from 'src/app/services/doctor.service';\r\nimport { HospitalService } from 'src/app/services/hospital.service';\r\nimport Swal from 'sweetalert2';\r\n\r\n@Component({\r\n  selector: 'app-medico',\r\n  templateUrl: './doctor.component.html',\r\n  styles: [],\r\n})\r\nexport class DoctorComponent implements OnInit {\r\n  public loading: boolean = true;\r\n  public hospitals: Hospital[] = [];\r\n\r\n  public selectedHospital: Hospital;\r\n  public selectedDoctor: Doctor;\r\n  public doctorForm: UntypedFormGroup;\r\n\r\n  constructor(\r\n    private hospitalService: HospitalService,\r\n    private doctorService: DoctorService,\r\n    private fb: UntypedFormBuilder,\r\n    private router: Router,\r\n    private activatedRoute: ActivatedRoute\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n    // this.doctorService.getDoctorById\r\n    this.activatedRoute.params.subscribe(({ id }) => this.loadDoctor(id));\r\n\r\n    this.doctorForm = this.fb.group({\r\n      name: ['', Validators.required],\r\n      hospital: ['', Validators.required],\r\n    });\r\n    this.loadHospitals();\r\n\r\n    this.doctorForm\r\n      .get('hospital')\r\n      .valueChanges.pipe(delay(100))\r\n      .subscribe((hospitalId) => {\r\n        this.selectedHospital = this.hospitals.find(\r\n          (h) => h._id === hospitalId\r\n        );\r\n        console.log(this.selectedHospital);\r\n      });\r\n  }\r\n  saveDoctor() {\r\n    const { name } = this.doctorForm.value;\r\n    // if (!this.selectedDoctor) {\r\n    //   return;\r\n    // }\r\n    this.doctorService\r\n      .createDoctor(this.doctorForm.value)\r\n      .subscribe((res: any) => {\r\n        if (this.selectedDoctor) {\r\n          //Update\r\n          const data = {\r\n            ...this.doctorForm.value,\r\n            _id: this.selectedDoctor._id,\r\n          };\r\n          this.doctorService.updateDoctor(data).subscribe((res) => {\r\n            Swal.fire(\r\n              'Updated',\r\n              `${name} has been modified successfully`,\r\n              'success'\r\n            );\r\n            // this.router.navigateByUrl(`/dashboard/doctor/${res.doctor._id}`);\r\n          });\r\n        } else {\r\n          //Create\r\n          this.doctorService\r\n            .createDoctor(this.doctorForm.value)\r\n            .subscribe((re: Doctor) => {\r\n              Swal.fire(\r\n                'Created',\r\n                `${name} was created successfully`,\r\n                'success'\r\n              );\r\n              this.router.navigateByUrl(`/dashboard/doctor/${res.doctor._id}`);\r\n            });\r\n        }\r\n      });\r\n  }\r\n\r\n  loadHospitals() {\r\n    // this.loading = true;\r\n\r\n    this.hospitalService.loadHospitals().subscribe((hospitals: Hospital[]) => {\r\n      console.log(hospitals);\r\n      // this.loading = false;\r\n      this.hospitals = hospitals;\r\n    });\r\n  }\r\n  loadDoctor(id: string) {\r\n    if (id === 'new') {\r\n    }\r\n    this.doctorService.getDoctorById(id).subscribe((doctor) => {\r\n      if (!doctor) {\r\n        return this.router.navigateByUrl(`/dashboard/doctors`);\r\n      } else {\r\n        this.selectedDoctor = doctor;\r\n        const {\r\n          name,\r\n          hospital: { _id },\r\n        } = doctor;\r\n        this.doctorForm.setValue({ name, hospital: _id });\r\n      }\r\n    });\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -3186,7 +3186,7 @@
                     },
                     {
                         "name": "fb",
-                        "type": "FormBuilder",
+                        "type": "UntypedFormBuilder",
                         "deprecated": false,
                         "deprecationMessage": ""
                     },
@@ -3225,7 +3225,7 @@
                     },
                     {
                         "name": "fb",
-                        "type": "FormBuilder",
+                        "type": "UntypedFormBuilder",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -4353,7 +4353,7 @@
         },
         {
             "name": "LoginComponent",
-            "id": "component-LoginComponent-b69d94ff76a4a41b457a36d0f0e57970e2c9813b11b05f12340db5b9e3b73c7aa0d85ddbc0f08f5df9836dcec4e6ea32a7ad449c9887f68e8c38339ef39f9a3c",
+            "id": "component-LoginComponent-413f602ad3194eb1b9712ee821e18409323bc2700e6bbaea7c19138f94297287d412438ea8b7681d33d523160467a01d0b75d4a572af688fdc9e6a9ab7d25800",
             "file": "src/app/auth/login/login.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4494,7 +4494,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, NgZone, OnInit } from '@angular/core';\r\nimport { FormBuilder, Validators } from '@angular/forms';\r\nimport { Router } from '@angular/router';\r\nimport { UserService } from 'src/app/services/user.service';\r\nimport Swal from 'sweetalert2';\r\n\r\ndeclare const gapi: any;\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.component.html',\r\n  styleUrls: ['./login.component.css'],\r\n})\r\n// STATE FOR CONFIRMING FORM SUBMISSION AND OAUTH2 login too.\r\nexport class LoginComponent implements OnInit {\r\n  public formSubmitted = false;\r\n  public auth2: any;\r\n\r\n  public loginForm: any = this.fb.group({\r\n    email: [\r\n      localStorage.getItem('email') || '',\r\n      [Validators.required, Validators.email],\r\n    ], // Correo existente en localStorage || string vacio (evitar el null)\r\n    password: ['', Validators.required],\r\n    rememberMe: [false],\r\n  });\r\n\r\n  constructor(\r\n    private router: Router,\r\n    private fb: FormBuilder,\r\n    private userService: UserService,\r\n    private ngZone: NgZone\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n    this.renderButton();\r\n  }\r\n  //manejo del formulario\r\n\r\n  login() {\r\n    this.userService.login(this.loginForm.value).subscribe({\r\n      next: (resp) => {\r\n        console.log(resp);\r\n\r\n        if (this.loginForm.get('rememberMe').value) {\r\n          localStorage.setItem('email', this.loginForm.get('email').value);\r\n        } else {\r\n          localStorage.removeItem('email');\r\n        }\r\n        // navegar al dashboard\r\n        this.router.navigateByUrl('/');\r\n      },\r\n      error: (err) => {\r\n        Swal.fire('Error', err.error.msg, 'error');\r\n      },\r\n    });\r\n\r\n    // console.log(this.loginForm.value)\r\n  }\r\n  // var\r\n  // var id_token = googleUser.getAuthResponse().id_token;\r\n\r\n  renderButton() {\r\n    gapi.signin2.render('my-signin2', {\r\n      scope: 'profile email',\r\n      width: 240,\r\n      height: 50,\r\n      longtitle: true,\r\n      theme: 'dark',\r\n    });\r\n    this.startApp();\r\n  }\r\n  async startApp() {\r\n    await this.userService.googleInit();\r\n    this.auth2 = this.userService.auth2;\r\n    this.attachSignin(document.getElementById('my-signin2'));\r\n  }\r\n  attachSignin(element: any) {\r\n    this.auth2.attachClickHandler(\r\n      element,\r\n      {},\r\n      (googleUser: any) => {\r\n        const id_token = googleUser.getAuthResponse().id_token;\r\n        // console.log(id_token);\r\n        this.userService.loginGoogle(id_token).subscribe((resp) => {\r\n          // navegar al dashboard\r\n          this.ngZone.run(() => {\r\n            this.router.navigateByUrl('/');\r\n          });\r\n        });\r\n      },\r\n      (error: any) => {\r\n        alert(JSON.stringify(error, undefined, 2));\r\n      }\r\n    );\r\n  }\r\n}\r\n\r\n// function signOut() {\r\n//   var auth2 = gapi.auth2.getAuthInstance();\r\n//   auth2.signOut().then(function () {\r\n//     console.log('User signed out.');\r\n//   });\r\n",
+            "sourceCode": "import { Component, NgZone, OnInit } from '@angular/core';\r\nimport { UntypedFormBuilder, Validators } from '@angular/forms';\r\nimport { Router } from '@angular/router';\r\nimport { UserService } from 'src/app/services/user.service';\r\nimport Swal from 'sweetalert2';\r\n\r\ndeclare const gapi: any;\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.component.html',\r\n  styleUrls: ['./login.component.css'],\r\n})\r\n// STATE FOR CONFIRMING FORM SUBMISSION AND OAUTH2 login too.\r\nexport class LoginComponent implements OnInit {\r\n  public formSubmitted = false;\r\n  public auth2: any;\r\n\r\n  public loginForm: any = this.fb.group({\r\n    email: [\r\n      localStorage.getItem('email') || '',\r\n      [Validators.required, Validators.email],\r\n    ], // Correo existente en localStorage || string vacio (evitar el null)\r\n    password: ['', Validators.required],\r\n    rememberMe: [false],\r\n  });\r\n\r\n  constructor(\r\n    private router: Router,\r\n    private fb: UntypedFormBuilder,\r\n    private userService: UserService,\r\n    private ngZone: NgZone\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n    this.renderButton();\r\n  }\r\n  //manejo del formulario\r\n\r\n  login() {\r\n    this.userService.login(this.loginForm.value).subscribe({\r\n      next: (resp) => {\r\n        console.log(resp);\r\n\r\n        if (this.loginForm.get('rememberMe').value) {\r\n          localStorage.setItem('email', this.loginForm.get('email').value);\r\n        } else {\r\n          localStorage.removeItem('email');\r\n        }\r\n        // navegar al dashboard\r\n        this.router.navigateByUrl('/');\r\n      },\r\n      error: (err) => {\r\n        Swal.fire('Error', err.error.msg, 'error');\r\n      },\r\n    });\r\n\r\n    // console.log(this.loginForm.value)\r\n  }\r\n  // var\r\n  // var id_token = googleUser.getAuthResponse().id_token;\r\n\r\n  renderButton() {\r\n    gapi.signin2.render('my-signin2', {\r\n      scope: 'profile email',\r\n      width: 240,\r\n      height: 50,\r\n      longtitle: true,\r\n      theme: 'dark',\r\n    });\r\n    this.startApp();\r\n  }\r\n  async startApp() {\r\n    await this.userService.googleInit();\r\n    this.auth2 = this.userService.auth2;\r\n    this.attachSignin(document.getElementById('my-signin2'));\r\n  }\r\n  attachSignin(element: any) {\r\n    this.auth2.attachClickHandler(\r\n      element,\r\n      {},\r\n      (googleUser: any) => {\r\n        const id_token = googleUser.getAuthResponse().id_token;\r\n        // console.log(id_token);\r\n        this.userService.loginGoogle(id_token).subscribe((resp) => {\r\n          // navegar al dashboard\r\n          this.ngZone.run(() => {\r\n            this.router.navigateByUrl('/');\r\n          });\r\n        });\r\n      },\r\n      (error: any) => {\r\n        alert(JSON.stringify(error, undefined, 2));\r\n      }\r\n    );\r\n  }\r\n}\r\n\r\n// function signOut() {\r\n//   var auth2 = gapi.auth2.getAuthInstance();\r\n//   auth2.signOut().then(function () {\r\n//     console.log('User signed out.');\r\n//   });\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -4517,7 +4517,7 @@
                     },
                     {
                         "name": "fb",
-                        "type": "FormBuilder",
+                        "type": "UntypedFormBuilder",
                         "deprecated": false,
                         "deprecationMessage": ""
                     },
@@ -4547,7 +4547,7 @@
                     },
                     {
                         "name": "fb",
-                        "type": "FormBuilder",
+                        "type": "UntypedFormBuilder",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -5012,7 +5012,7 @@
         },
         {
             "name": "ProfileComponent",
-            "id": "component-ProfileComponent-67b72c60571b9411ae8abcb088a7bc790d6957365bb9369d46462adedb9595ad25095c59b7d1fa167916d656b10ec629c1b0bf4e2cade554f0bbcb683723b6be",
+            "id": "component-ProfileComponent-17b2cac985e6eee630ee0ebb0682d8a6a2afda6be8b4cc856ea92d970d78af84da2cfa367c4b69b1887a9b769c11a36220a72e65cfc0855fa0227a1729efbbbc",
             "file": "src/app/pages/profile/profile.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -5047,7 +5047,7 @@
                     "name": "profileForm",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "FormGroup",
+                    "type": "UntypedFormGroup",
                     "optional": false,
                     "description": "",
                     "line": 14,
@@ -5149,7 +5149,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\nimport { User } from 'src/app/models/user.model';\r\nimport { FileUploadService } from 'src/app/services/file-upload.service';\r\nimport { UserService } from 'src/app/services/user.service';\r\nimport Swal from 'sweetalert2';\r\n\r\n@Component({\r\n  selector: 'app-profile',\r\n  templateUrl: './profile.component.html',\r\n  styles: [],\r\n})\r\nexport class ProfileComponent implements OnInit {\r\n  public profileForm: FormGroup;\r\n  public user: User;\r\n  public uploadFile: File;\r\n  public imgTemp: any = null;\r\n\r\n  constructor(\r\n    private fb: FormBuilder,\r\n    private userService: UserService,\r\n    private fileUploadService: FileUploadService\r\n  ) {\r\n    this.user = userService.user;\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.profileForm = this.fb.group({\r\n      name: [this.user.name, Validators.required],\r\n      role: [this.user.role, Validators.required],\r\n      email: [this.user.email, [Validators.required, Validators.email]],\r\n    });\r\n  }\r\n  updateProfile() {\r\n    console.log(this.profileForm.value);\r\n    this.userService.updateProfile(this.profileForm.value).subscribe({\r\n      // next?: (value: Object) => void, error?: (error: any) => void, complete?: () => void):\r\n      next: () => {\r\n        // console.log(resp);\r\n        const { name, email, role } = this.profileForm.value;\r\n        console.log(name);\r\n        this.user.name = name;\r\n        this.user.role = role;\r\n        this.user.email = email;\r\n        Swal.fire('guardado', `${name} has been saved`, 'success');\r\n      },\r\n      error: (err) => {\r\n        console.log(err);\r\n        Swal.fire('Error', err.error.msg, 'error');\r\n      },\r\n    });\r\n  }\r\n\r\n  changeImage(file: File) {\r\n    this.uploadFile = file;\r\n\r\n    if (!file) {\r\n      return (this.imgTemp = null);\r\n    }\r\n    const reader = new FileReader();\r\n    reader.readAsDataURL(file);\r\n\r\n    reader.onloadend = () => (this.imgTemp = reader.result);\r\n  }\r\n\r\n  uploadImg() {\r\n    this.fileUploadService\r\n      .updatePhoto(this.uploadFile, 'users', this.user.uid)\r\n      .then((img) => {\r\n        this.user.img = img;\r\n        Swal.fire('guardado', 'changes has been saved', 'success');\r\n      })\r\n      .catch((err) => {\r\n        console.log(err);\r\n        Swal.fire('Error', 'Image could not be uploaded', 'error');\r\n      });\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';\r\nimport { User } from 'src/app/models/user.model';\r\nimport { FileUploadService } from 'src/app/services/file-upload.service';\r\nimport { UserService } from 'src/app/services/user.service';\r\nimport Swal from 'sweetalert2';\r\n\r\n@Component({\r\n  selector: 'app-profile',\r\n  templateUrl: './profile.component.html',\r\n  styles: [],\r\n})\r\nexport class ProfileComponent implements OnInit {\r\n  public profileForm: UntypedFormGroup;\r\n  public user: User;\r\n  public uploadFile: File;\r\n  public imgTemp: any = null;\r\n\r\n  constructor(\r\n    private fb: UntypedFormBuilder,\r\n    private userService: UserService,\r\n    private fileUploadService: FileUploadService\r\n  ) {\r\n    this.user = userService.user;\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.profileForm = this.fb.group({\r\n      name: [this.user.name, Validators.required],\r\n      role: [this.user.role, Validators.required],\r\n      email: [this.user.email, [Validators.required, Validators.email]],\r\n    });\r\n  }\r\n  updateProfile() {\r\n    console.log(this.profileForm.value);\r\n    this.userService.updateProfile(this.profileForm.value).subscribe({\r\n      // next?: (value: Object) => void, error?: (error: any) => void, complete?: () => void):\r\n      next: () => {\r\n        // console.log(resp);\r\n        const { name, email, role } = this.profileForm.value;\r\n        console.log(name);\r\n        this.user.name = name;\r\n        this.user.role = role;\r\n        this.user.email = email;\r\n        Swal.fire('guardado', `${name} has been saved`, 'success');\r\n      },\r\n      error: (err) => {\r\n        console.log(err);\r\n        Swal.fire('Error', err.error.msg, 'error');\r\n      },\r\n    });\r\n  }\r\n\r\n  changeImage(file: File) {\r\n    this.uploadFile = file;\r\n\r\n    if (!file) {\r\n      return (this.imgTemp = null);\r\n    }\r\n    const reader = new FileReader();\r\n    reader.readAsDataURL(file);\r\n\r\n    reader.onloadend = () => (this.imgTemp = reader.result);\r\n  }\r\n\r\n  uploadImg() {\r\n    this.fileUploadService\r\n      .updatePhoto(this.uploadFile, 'users', this.user.uid)\r\n      .then((img) => {\r\n        this.user.img = img;\r\n        Swal.fire('guardado', 'changes has been saved', 'success');\r\n      })\r\n      .catch((err) => {\r\n        console.log(err);\r\n        Swal.fire('Error', 'Image could not be uploaded', 'error');\r\n      });\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -5161,7 +5161,7 @@
                 "args": [
                     {
                         "name": "fb",
-                        "type": "FormBuilder",
+                        "type": "UntypedFormBuilder",
                         "deprecated": false,
                         "deprecationMessage": ""
                     },
@@ -5182,7 +5182,7 @@
                 "jsdoctags": [
                     {
                         "name": "fb",
-                        "type": "FormBuilder",
+                        "type": "UntypedFormBuilder",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -5368,7 +5368,7 @@
         },
         {
             "name": "RegisterComponent",
-            "id": "component-RegisterComponent-52f753674640a084e056d575dc0a01884d27d168985ff627ee26ae2cdaa0ee005310bc92dbfe9f11204f0e955ea916611b6cce6d42d75ad337357637e8c4a8d7",
+            "id": "component-RegisterComponent-1426b5c20fe13587e969289fe3373b883b8d726bef90c96dbb22fd15f19c057ae9fee9a567333bde87fa55a76b215cb084e1aa96b206972118920c556c547c6e",
             "file": "src/app/auth/register/register.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -5453,7 +5453,7 @@
                         }
                     ],
                     "optional": false,
-                    "returnType": "(formGroup: FormGroup) => void",
+                    "returnType": "(formGroup: UntypedFormGroup) => void",
                     "typeParameters": [],
                     "line": 76,
                     "deprecated": false,
@@ -5527,7 +5527,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\nimport Swal from 'sweetalert2';\r\nimport { FormBuilder, FormGroup, Validators } from '@angular/forms';\r\nimport { Router } from '@angular/router';\r\n\r\nimport { UserService } from './../../services/user.service';\r\n\r\n@Component({\r\n  selector: 'app-register',\r\n  templateUrl: './register.component.html',\r\n  styleUrls: ['./register.component.css'],\r\n})\r\nexport class RegisterComponent {\r\n  public formSubmitted = false;\r\n\r\n  public registerForm: any = this.fb.group(\r\n    {\r\n      name: ['elcastri', Validators.required],\r\n      email: ['elcastri1@hotmail.com', [Validators.required, Validators.email]],\r\n      password: ['elcastri', Validators.required],\r\n      password2: ['elcastri', Validators.required],\r\n      terms: [true, Validators.required],\r\n    },\r\n    {\r\n      validators: this.matchingPasswords('password', 'password2'),\r\n    }\r\n  );\r\n\r\n  constructor(\r\n    private fb: FormBuilder,\r\n    private userService: UserService,\r\n    private router: Router\r\n  ) {}\r\n\r\n  createUser() {\r\n    this.formSubmitted = true; //Confirmo el envio del formulario\r\n    // console.log(this.registerForm.value)\r\n    console.log(this.registerForm);\r\n\r\n    if (this.registerForm.invalid) {\r\n      return;\r\n    }\r\n    // Posting sign up body values\r\n    this.userService.createUser(this.registerForm.value).subscribe({\r\n      next: (resp) => {\r\n        this.router.navigateByUrl('/');\r\n      },\r\n      error: (err) => {\r\n        Swal.fire('Error', err.error.msg, 'error');\r\n      },\r\n    });\r\n  }\r\n\r\n  notValidField(field: string): boolean {\r\n    if (this.registerForm.get(field).invalid && this.formSubmitted) {\r\n      return true;\r\n    } else {\r\n      return false;\r\n    }\r\n  }\r\n\r\n  notValidPassword() {\r\n    const pass1 = this.registerForm.get('password').value;\r\n    const pass2 = this.registerForm.get('password2').value;\r\n\r\n    if (pass1 !== pass2 && this.formSubmitted) {\r\n      return true;\r\n    } else {\r\n      return false;\r\n    }\r\n  }\r\n\r\n  acceptTerms() {\r\n    return !this.registerForm.get('terms').value && this.formSubmitted; //si el check de terms esta en false y ya se presiono submit...\r\n  }\r\n  matchingPasswords(pass1Name: string, pass2Name: string) {\r\n    return (formGroup: FormGroup) => {\r\n      const pass1Control: any = formGroup.get(pass1Name);\r\n      const pass2Control: any = formGroup.get(pass2Name);\r\n\r\n      if (pass1Control.value === pass2Control.value) {\r\n        pass2Control.setErrors(null);\r\n      } else {\r\n        pass2Control.setErrors({ doesNotMatch: true });\r\n      }\r\n    };\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\nimport Swal from 'sweetalert2';\r\nimport { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';\r\nimport { Router } from '@angular/router';\r\n\r\nimport { UserService } from './../../services/user.service';\r\n\r\n@Component({\r\n  selector: 'app-register',\r\n  templateUrl: './register.component.html',\r\n  styleUrls: ['./register.component.css'],\r\n})\r\nexport class RegisterComponent {\r\n  public formSubmitted = false;\r\n\r\n  public registerForm: any = this.fb.group(\r\n    {\r\n      name: ['elcastri', Validators.required],\r\n      email: ['elcastri1@hotmail.com', [Validators.required, Validators.email]],\r\n      password: ['elcastri', Validators.required],\r\n      password2: ['elcastri', Validators.required],\r\n      terms: [true, Validators.required],\r\n    },\r\n    {\r\n      validators: this.matchingPasswords('password', 'password2'),\r\n    }\r\n  );\r\n\r\n  constructor(\r\n    private fb: UntypedFormBuilder,\r\n    private userService: UserService,\r\n    private router: Router\r\n  ) {}\r\n\r\n  createUser() {\r\n    this.formSubmitted = true; //Confirmo el envio del formulario\r\n    // console.log(this.registerForm.value)\r\n    console.log(this.registerForm);\r\n\r\n    if (this.registerForm.invalid) {\r\n      return;\r\n    }\r\n    // Posting sign up body values\r\n    this.userService.createUser(this.registerForm.value).subscribe({\r\n      next: (resp) => {\r\n        this.router.navigateByUrl('/');\r\n      },\r\n      error: (err) => {\r\n        Swal.fire('Error', err.error.msg, 'error');\r\n      },\r\n    });\r\n  }\r\n\r\n  notValidField(field: string): boolean {\r\n    if (this.registerForm.get(field).invalid && this.formSubmitted) {\r\n      return true;\r\n    } else {\r\n      return false;\r\n    }\r\n  }\r\n\r\n  notValidPassword() {\r\n    const pass1 = this.registerForm.get('password').value;\r\n    const pass2 = this.registerForm.get('password2').value;\r\n\r\n    if (pass1 !== pass2 && this.formSubmitted) {\r\n      return true;\r\n    } else {\r\n      return false;\r\n    }\r\n  }\r\n\r\n  acceptTerms() {\r\n    return !this.registerForm.get('terms').value && this.formSubmitted; //si el check de terms esta en false y ya se presiono submit...\r\n  }\r\n  matchingPasswords(pass1Name: string, pass2Name: string) {\r\n    return (formGroup: UntypedFormGroup) => {\r\n      const pass1Control: any = formGroup.get(pass1Name);\r\n      const pass2Control: any = formGroup.get(pass2Name);\r\n\r\n      if (pass1Control.value === pass2Control.value) {\r\n        pass2Control.setErrors(null);\r\n      } else {\r\n        pass2Control.setErrors({ doesNotMatch: true });\r\n      }\r\n    };\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -5544,7 +5544,7 @@
                 "args": [
                     {
                         "name": "fb",
-                        "type": "FormBuilder",
+                        "type": "UntypedFormBuilder",
                         "deprecated": false,
                         "deprecationMessage": ""
                     },
@@ -5565,7 +5565,7 @@
                 "jsdoctags": [
                     {
                         "name": "fb",
-                        "type": "FormBuilder",
+                        "type": "UntypedFormBuilder",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
