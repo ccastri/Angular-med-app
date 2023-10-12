@@ -1,0 +1,12 @@
+🔎 checking possible migrations..
+
+⚠️  failed to check fix angular-builders
+
+Error: ❌ Your project uses Angular < 14.0.0. Storybook 7.0 for Angular requires Angular 14.0.0 or higher. 
+Please upgrade your Angular version to at least version 14.0.0 to use Storybook 7.0 in your project.
+    at Object.check (D:\AngularDev\03-ADMINPRO\adminpro\node_modules\@storybook\cli\dist\generate.js:352:628)
+    at async runFixes (D:\AngularDev\03-ADMINPRO\adminpro\node_modules\@storybook\cli\dist\generate.js:404:1239)
+    at async automigrate (D:\AngularDev\03-ADMINPRO\adminpro\node_modules\@storybook\cli\dist\generate.js:401:676)
+    at async doUpgrade (D:\AngularDev\03-ADMINPRO\adminpro\node_modules\@storybook\cli\dist\generate.js:433:3419)
+    at async withTelemetry (D:\AngularDev\03-ADMINPRO\adminpro\node_modules\@storybook\core-server\dist\index.js:101:4155)
+    at async upgrade (D:\AngularDev\03-ADMINPRO\adminpro\node_modules\@storybook\cli\dist\generate.js:433:3865)
