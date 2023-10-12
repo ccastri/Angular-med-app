@@ -58,21 +58,21 @@ const childRoutes: Routes = [
     component: UsersComponent,
     data: { title: 'Users' },
   },
-  // {
-  //   path: 'hospitals',
-  //   component: HospitalsComponent,
-  //   data: { title: 'Hospitals' },
-  // },
-  // {
-  //   path: 'doctors',
-  //   component: DoctorsComponent,
-  //   data: { title: 'Doctors' },
-  // },
-  // {
-  //   path: 'doctor/:id',
-  //   component: DoctorComponent,
-  //   data: { title: 'Doctor' },
-  // },
+  {
+    path: 'hospitals',
+    component: HospitalsComponent,
+    data: { title: 'Hospitals' },
+  },
+  {
+    path: 'doctors',
+    component: DoctorsComponent,
+    data: { title: 'Doctors' },
+  },
+  {
+    path: 'doctor/:id',
+    component: DoctorComponent,
+    data: { title: 'Doctor' },
+  },
 ];
 
 @NgModule({

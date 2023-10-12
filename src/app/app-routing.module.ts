@@ -13,6 +13,7 @@ const routes: Routes = [
   // path:'/dashboard' pagesRouting
   // !Rutas vacias redirigen al /dashboard
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  // { path: '/', redirectTo: '/login' },
   //! Rutas no encontradas redirigen a component not found
   { path: '**', component: NotfoundComponent }, //Errores de direccion URL not page found
 ];

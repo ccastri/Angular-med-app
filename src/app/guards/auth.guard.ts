@@ -15,6 +15,9 @@ import { Observable, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+//! Users (patient) guard implementation:
+// !If the token didn't get valid always go to the /login
+// !It wont load no dashboard till gets authenticated
 export class AuthGuard implements CanActivate, CanLoad {
   constructor(private userService: UserService, private router: Router) {}
   canLoad(
@@ -28,6 +31,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     return this.userService.tokenValidation().pipe(
       tap((isAuth) => {
         if (!isAuth) {
+          // this.router.navigate(['/login']);
           this.router.createUrlTree(['/login']);
         }
       })
@@ -38,6 +42,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     return this.userService.tokenValidation().pipe(
       tap((isAuth) => {
         if (!isAuth) {
+          // this.router.navigate(['/login']);
           this.router.createUrlTree(['/login']);
         }
       })

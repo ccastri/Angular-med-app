@@ -8,6 +8,9 @@
 >
   <div class="login-box card">
     <div class="card-body">
+      <!-- ============================================================== -->
+      <!-- Register form-->
+      <!-- ============================================================== -->
       <form
         class="form-horizontal form-material"
         id="loginform"
@@ -15,11 +18,17 @@
         [formGroup]="loginForm"
         (ngSubmit)="login()"
       >
+        <!-- ============================================================== -->
+        <!-- Logo image -->
+        <!-- ============================================================== -->
         <a href="javascript:void(0)" class="text-center db"
           ><img src="../assets/images/logo-icon.png" alt="Home" /><br /><img
             src="../assets/images/logo-text.png"
             alt="Home"
         /></a>
+        <!-- ============================================================== -->
+        <!-- Register form fields -->
+        <!-- ============================================================== -->
         <div class="form-group m-t-40">
           <div class="col-xs-12">
             <input
@@ -59,9 +68,15 @@
             >
           </div>
         </div>
-        <div id="google-btn">
+        <!-- ============================================================== -->
+        <!-- Google OAUTH 2.0 button -->
+        <!-- ============================================================== -->
+        <!-- <div id="google-btn">
           <div id="my-signin2"></div>
-        </div>
+        </div> -->
+        <!-- ============================================================== -->
+        <!-- Custom login button -->
+        <!-- ============================================================== -->
         <div class="form-group text-center m-t-20">
           <div class="col-xs-12">
             <button
@@ -72,14 +87,17 @@
             </button>
           </div>
         </div>
-        <div class="row">
+        <!-- ============================================================== -->
+        <!-- Register form link -->
+        <!-- ============================================================== -->
+        <!-- <div class="row">
           <div
             class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center mb-4"
             id="google-btn"
           >
             <div id="my-signin2"></div>
           </div>
-        </div>
+        </div> -->
         <div class="form-group m-b-0">
           <div class="col-sm-12 text-center">
             Don't have an account?
@@ -89,6 +107,9 @@
           </div>
         </div>
       </form>
+      <!-- ============================================================== -->
+      <!-- Password recover form -->
+      <!-- ============================================================== -->
       <form class="form-horizontal" id="recoverform" action="index.html">
         <div class="form-group">
           <div class="col-xs-12">

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from './../../services/user.service';
@@ -11,8 +11,9 @@ import { UserService } from './../../services/user.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  // ! To confirm the form got submitted correctly
   public formSubmitted = false;
-
+  // !The form fields ['defaultValue', validator] +  2 passwords coincidence validation
   public registerForm: any = this.fb.group(
     {
       name: ['elcastri', Validators.required],
@@ -25,13 +26,21 @@ export class RegisterComponent {
       validators: this.matchingPasswords('password', 'password2'),
     }
   );
-
+  //!  Properties (modules, methods, services and or third party libraries) used in this component:
+  //!  formBuilder, userService and router
   constructor(
-    private fb: UntypedFormBuilder,
+    private fb: FormBuilder,
     private userService: UserService,
     private router: Router
   ) {}
-
+  // ! First method: create a new user:
+  // !1. The formSubmitted flag turns on
+  // !2. Log the fields values
+  // !3. Return nothing if the form is invalid
+  // !4. Call the createUser method fron the userService to asynchronously create
+  // !The user and then navigate to the dashboard
+  // !(when user is logged in and looks for root path it'll be redirected to /dashboard)
+  // !if any errors shows them up in the screen
   createUser() {
     this.formSubmitted = true; //Confirmo el envio del formulario
     // console.log(this.registerForm.value)
@@ -50,7 +59,10 @@ export class RegisterComponent {
       },
     });
   }
-
+  // !Validators:
+  // !if any of the fields in registerForms is not valid and the user've clicked on submit already
+  // ! raise true and show the validation warning below the terms and conditions checkmark field
+  // ! if not live it alone
   notValidField(field: string): boolean {
     if (this.registerForm.get(field).invalid && this.formSubmitted) {
       return true;
@@ -58,7 +70,10 @@ export class RegisterComponent {
       return false;
     }
   }
-
+  //! Pasword coincidence validation:
+  //! Extract values from both pass fields
+  //! If they don't match raise validation error
+  //! Else live it alone
   notValidPassword() {
     const pass1 = this.registerForm.get('password').value;
     const pass2 = this.registerForm.get('password2').value;
@@ -69,12 +84,16 @@ export class RegisterComponent {
       return false;
     }
   }
-
+  //! Pick the terms and conditions
+  //! If not and for submission got triggered raise the validation error
   acceptTerms() {
     return !this.registerForm.get('terms').value && this.formSubmitted; //si el check de terms esta en false y ya se presiono submit...
   }
+  // ! Password validation (from formBuilder):
+  // ! Internal doublechecking passwords are valid
+  // ! if not doesNotMatch fb flag gets raised and validation error after all
   matchingPasswords(pass1Name: string, pass2Name: string) {
-    return (formGroup: UntypedFormGroup) => {
+    return (formGroup: FormGroup) => {
       const pass1Control: any = formGroup.get(pass1Name);
       const pass2Control: any = formGroup.get(pass2Name);
 

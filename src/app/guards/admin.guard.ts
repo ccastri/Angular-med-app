@@ -10,6 +10,9 @@ import { UserService } from '../services/user.service';
 @Injectable({
   providedIn: 'root',
 })
+
+//! AuthGuard will show you the full sidebar admin panel
+// It's logging a 'adminguard' string to let devs now it's working
 export class AdminGuard implements CanActivate {
   constructor(private userService: UserService, private router: Router) {}
   canActivate(

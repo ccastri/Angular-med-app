@@ -4,25 +4,16 @@ import { SettingsService } from 'src/app/services/settings.service';
 @Component({
   selector: 'app-account-settings',
   templateUrl: './account-settings.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class AccountSettingsComponent implements OnInit {
-  
- 
- 
-
-  constructor(private settingService: SettingsService) { }
+  constructor(private settingService: SettingsService) {}
 
   ngOnInit(): void {
     this.settingService.checkCurrentTheme();
   }
-   // #recibo el color y selecciono por id asignandolo a una constante... ? porque puede ser null
-  changeTheme( theme: string){
-    
-    this.settingService.changeTheme( theme);
-
+  // #recibo el color y selecciono por id asignandolo a una constante... ? porque puede ser null
+  changeTheme(theme: string) {
+    this.settingService.changeTheme(theme);
   }
-
-
 }
