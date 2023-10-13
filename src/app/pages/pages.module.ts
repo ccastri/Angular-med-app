@@ -10,7 +10,7 @@ import { PipesModule } from '../pipes/pipes.module';
 
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { Grafica1Component } from './grafica1/grafica1.component';
+// import { Grafica1Component } from './grafica1/grafica1.component';
 import { PagesComponent } from './pages.component';
 import { ProgressComponent } from './progress/progress.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
@@ -27,7 +27,7 @@ import { SearchComponent } from './search/search.component';
   declarations: [
     DashboardComponent,
     ProgressComponent,
-    Grafica1Component,
+    // Grafica1Component,
     PagesComponent,
     AccountSettingsComponent,
     PromisesComponent,
@@ -43,7 +43,7 @@ import { SearchComponent } from './search/search.component';
   exports: [
     DashboardComponent,
     ProgressComponent,
-    Grafica1Component,
+    // Grafica1Component,
     PagesComponent,
     AccountSettingsComponent,
   ],

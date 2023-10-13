@@ -1,20 +1,20 @@
-# Usar una imagen base de Node.js
-FROM node:16.17
+# Use an official Node.js runtime as a parent image
+FROM node:20.5.0
 
-# Establecer el directorio de trabajo dentro del contenedor
+# Set the working directory within the container
 WORKDIR /usr/src/app
 
-# Copiar los archivos de configuración de la aplicación (package.json y package-lock.json) al contenedor
+# Copy package.json and package-lock.json (or yarn.lock) to the container
 COPY package*.json ./
 
-# Instalar las dependencias de la aplicación
+# Install application dependencies
 RUN npm install
 
-# Copiar el código fuente de la aplicación al contenedor
+# Copy the rest of the application code to the container
 COPY . .
 
-# Exponer el puerto en el que se ejecutará la aplicación Angular (puerto 4200)
+# Expose port 4200, which is the default port for Angular development
 EXPOSE 4200
 
-# Comando para iniciar la aplicación Angular
+# Define the command to start your Angular development server
 CMD ["npm", "start"]

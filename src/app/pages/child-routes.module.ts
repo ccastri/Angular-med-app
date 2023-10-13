@@ -5,7 +5,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from '../guards/admin.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { Grafica1Component } from './grafica1/grafica1.component';
+// import { Grafica1Component } from './grafica1/grafica1.component';
 import { DoctorComponent } from './mainteneance/doctors/doctor.component';
 import { DoctorsComponent } from './mainteneance/doctors/doctors.component';
 import { HospitalsComponent } from './mainteneance/hospitals/hospitals.component';
@@ -23,11 +23,11 @@ const childRoutes: Routes = [
     component: ProgressComponent,
     data: { title: 'Progress' },
   },
-  {
-    path: 'chart1',
-    component: Grafica1Component,
-    data: { title: 'Charts' },
-  },
+  // {
+  //   path: 'chart1',
+  //   component: Grafica1Component,
+  //   data: { title: 'Charts' },
+  // },
   {
     path: 'account-settings',
     component: AccountSettingsComponent,
