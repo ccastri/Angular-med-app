@@ -5,7 +5,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from '../guards/admin.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
-// import { Grafica1Component } from './grafica1/grafica1.component';
+import { Grafica1Component } from './grafica1/grafica1.component';
 import { DoctorComponent } from './mainteneance/doctors/doctor.component';
 import { DoctorsComponent } from './mainteneance/doctors/doctors.component';
 import { HospitalsComponent } from './mainteneance/hospitals/hospitals.component';
@@ -23,25 +23,25 @@ const childRoutes: Routes = [
     component: ProgressComponent,
     data: { title: 'Progress' },
   },
-  // {
-  //   path: 'chart1',
-  //   component: Grafica1Component,
-  //   data: { title: 'Charts' },
-  // },
+  {
+    path: 'fanances',
+    component: Grafica1Component,
+    data: { title: 'Mis Finanzas' },
+  },
   {
     path: 'account-settings',
     component: AccountSettingsComponent,
-    data: { title: 'Theme' },
+    data: { title: 'Tema' },
   },
   {
     path: 'search/:pattern',
     component: SearchComponent,
-    data: { title: 'Searchs' },
+    data: { title: 'Buscar' },
   },
   {
-    path: 'promises',
+    path: 'diagnostic',
     component: PromisesComponent,
-    data: { title: 'Promises' },
+    data: { title: 'Mis Diagnósticos' },
   },
   { path: 'rxjs', component: RxjsComponent, data: { title: 'Rxjs' } },
   {
